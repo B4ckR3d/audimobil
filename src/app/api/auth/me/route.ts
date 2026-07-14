@@ -1,0 +1,32 @@
+﻿import { NextRequest, NextResponse } from 'next/server';
+import { validateSession, getCookieValue, getUserPermissions } from '@/lib/auth';
+
+export async function GET(request: NextRequest) {
+  try {
+    const cookieHeader = request.headers.get('cookie');
+    const token = getCookieValue(cookieHeader, 'session_token');
+
+    if (!token) {
+      return NextResponse.json({ error: 'Tidak ada sesi aktif' }, { status: 401 });
+    }
+
+    const session = validateSession(token);
+    if (!session) {
+      return NextResponse.json({ error: 'Sesi sudah berakhir' }, { status: 401 });
+    }
+
+    const permissions = getUserPermissions(session.role);
+
+    return NextResponse.json({
+      success: true,
+      user: {
+        id: session.userId,
+        username: session.username,
+        role: session.role,
+        permissions
+      }
+    });
+  } catch (error) {
+    return NextResponse.json({ error: 'Terjadi kesalahan' }, { status: 500 });
+  }
+}

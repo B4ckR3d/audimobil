@@ -1,0 +1,65 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# uploads (runtime, jangan di-track)
+public/uploads/
+!public/uploads/.gitkeep
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+*.md
+cred.md
+
+# Database SQLite (runtime, jangan di-track)
+data/audi-motor.db
+data/audi-motor.db-shm
+data/audi-motor.db-wal
+database.db
+database.db-shm
+database.db-wal
+
+wiki/
+AGENTS.md
+CLAUDE.md
+cred.md
+memory.md
+PRD.md
+README.md
+TASKS.md

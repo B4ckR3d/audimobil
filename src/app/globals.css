@@ -1,0 +1,456 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-display: 'Inter', system-ui, sans-serif;
+}
+
+/* ===== DESIGN TOKENS (Lamborghini-inspired) ===== */
+:root {
+  /* Surface */
+  --surface-1: #0a0a0c;
+  --surface-2: #050505;
+  --surface-3: #111111;
+  --surface-4: #1a1a1a;
+
+  /* Text */
+  --text-1: #ffffff;
+  --text-2: #ededed;
+  --text-3: #a3a3a3;
+  --text-4: #737373;
+  --text-5: #525252;
+
+  /* Interactive */
+  --interactive-default: #ffffff;
+  --interactive-hover: #d4d4d4;
+  --interactive-focus: #1e90ff;
+  --interactive-disabled: #404040;
+
+  /* Accent */
+  --accent: #DDB511;
+  --accent-hover: #c9a30f;
+
+  /* Border */
+  --border-1: #262626;
+  --border-2: #404040;
+  --border-3: #525252;
+
+  /* Spacing scale */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --space-4xl: 8rem;
+
+  /* Typography scale */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 2rem;
+  --text-4xl: 2.5rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+body {
+  background: var(--surface-1);
+  color: var(--text-2);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.text-chrome-effect {
+  background: linear-gradient(135deg, #d4d4d4 0%, #ffffff 40%, #a3a3a3 60%, #e5e5e5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 8px rgba(200, 200, 200, 0.15));
+}
+
+.btn-chrome {
+  background: linear-gradient(135deg, #262626 0%, #404040 50%, #262626 100%);
+  border: 1px solid #525252;
+  color: #f5f5f5;
+  transition: all 0.3s ease;
+}
+
+.btn-chrome:hover {
+  background: linear-gradient(135deg, #404040 0%, #525252 50%, #404040 100%);
+  border-color: #a3a3a3;
+  box-shadow: 0 0 15px rgba(150, 150, 150, 0.15);
+}
+
+.border-glow {
+  border: 1px solid #262626;
+  transition: all 0.3s ease;
+}
+
+.border-glow:hover {
+  border-color: var(--border-3);
+  box-shadow: 0 0 20px rgba(100, 100, 100, 0.05);
+}
+
+/* ===== LAMBORGHINI-STYLE BUTTONS ===== */
+
+/* Outline button */
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--border-3);
+  color: var(--text-2);
+  transition: all var(--transition-base);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+  font-size: var(--text-sm);
+}
+
+.btn-outline:hover {
+  background: var(--surface-4);
+  border-color: var(--text-3);
+  color: var(--text-1);
+}
+
+.btn-outline:active {
+  border-color: var(--text-2);
+}
+
+/* Ghost button (underline only) */
+.btn-ghost {
+  background: transparent;
+  border: none;
+  color: var(--text-2);
+  position: relative;
+  padding: var(--space-xs) 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+  font-size: var(--text-sm);
+  transition: color var(--transition-base);
+}
+
+.btn-ghost::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--text-1);
+  transition: width var(--transition-base);
+}
+
+.btn-ghost:hover {
+  color: var(--text-1);
+}
+
+.btn-ghost:hover::after {
+  width: 100%;
+}
+
+/* Accent button */
+.btn-accent {
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  color: #000000;
+  transition: all var(--transition-base);
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
+
+.btn-accent:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+/* ===== UNDERLINE LINK HOVER ===== */
+.link-underline {
+  position: relative;
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width var(--transition-base);
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* ===== CARD HOVER LIFT ===== */
+.card-hover {
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== HEXAGON BUTTON (Lamborghini DNA) ===== */
+.btn-hexagon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  background: transparent;
+  border: none;
+  color: var(--text-2);
+  transition: all var(--transition-base);
+}
+
+.btn-hexagon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: transparent;
+  border: 1px solid var(--border-2);
+  transition: all var(--transition-base);
+}
+
+.btn-hexagon:hover {
+  color: var(--text-1);
+}
+
+.btn-hexagon:hover::before {
+  background: var(--surface-4);
+  border-color: var(--border-3);
+}
+
+/* ===== SECTION SPACING ===== */
+.section-spacing {
+  padding-top: var(--space-4xl);
+  padding-bottom: var(--space-4xl);
+}
+
+@media (max-width: 768px) {
+  .section-spacing {
+    padding-top: var(--space-3xl);
+    padding-bottom: var(--space-3xl);
+  }
+}
+
+/* ===== GRADIENT OVERLAY ===== */
+.gradient-overlay-bottom {
+  background: linear-gradient(to bottom, transparent 0%, var(--surface-1) 100%);
+}
+
+.gradient-overlay-top {
+  background: linear-gradient(to top, transparent 0%, var(--surface-1) 100%);
+}
+
+.font-display {
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Fade in up animation for cards */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Fade in down */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Fade in left */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-left {
+  animation: fadeInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Fade in right */
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-right {
+  animation: fadeInRight 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Scale in */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Blur in */
+@keyframes blurIn {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.animate-blur-in {
+  animation: blurIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Slide up text - for hero typing effect */
+@keyframes slideUpChar {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Gradient shimmer for chrome text */
+@keyframes chromeShimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.text-chrome-shimmer {
+  background: linear-gradient(
+    90deg,
+    #d4d4d4 0%,
+    #ffffff 25%,
+    #a3a3a3 50%,
+    #ffffff 75%,
+    #d4d4d4 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: chromeShimmer 3s linear infinite;
+}
+
+/* Counter animation helper */
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-count-up {
+  animation: countUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Float animation for decorative elements */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0c;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(100, 100, 100, 0.3);
+  color: #ffffff;
+}
